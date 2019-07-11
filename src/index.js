@@ -1,11 +1,7 @@
 const path = require('path');
 const rollup = require('rollup');
 const utils = require('./utils');
-const plugins = require('./plugins')
-
-const bannedPluginNames = [
-  'liveServer', 'web-worker-loader'
-];
+const plugins = require('./plugins');
 
 module.exports = function workerLoaderPlugin(config = null) {
   const sourcemap = (config && config.sourcemap) || false;

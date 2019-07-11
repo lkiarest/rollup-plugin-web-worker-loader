@@ -1,6 +1,6 @@
 {
   "name": "@qintx/rollup-plugin-web-worker-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Rollup plugin to handle Web Workers",
   "main": "src/index.js",
   "repository": "https://github.com/lkiarest/rollup-plugin-web-worker-loader",

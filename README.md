@@ -1,4 +1,4 @@
-# @qintxrollup-plugin-web-worker-loader
+# @qintx/rollup-plugin-web-worker-loader
 
 Rollup plugin to handle Web Workers.
 

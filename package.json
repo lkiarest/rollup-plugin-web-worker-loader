@@ -1,9 +1,9 @@
 {
-  "name": "rollup-plugin-web-worker-loader",
-  "version": "0.5.0",
+  "name": "@qintx/rollup-plugin-web-worker-loader",
+  "version": "0.1.0",
   "description": "Rollup plugin to handle Web Workers",
   "main": "src/index.js",
-  "repository": "https://github.com/darionco/rollup-plugin-web-worker-loader",
+  "repository": "https://github.com/lkiarest/rollup-plugin-web-worker-loader",
   "author": "Dario Segura",
   "license": "MIT",
   "scripts": {
@@ -17,6 +17,10 @@
     "worker"
   ],
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
     "eslint": "^5.15.3"
+  },
+  "dependencies": {
+    "rollup-plugin-node-builtins": "^2.1.2"
   }
 }

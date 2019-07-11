@@ -1,4 +1,4 @@
-# rollup-plugin-web-worker-loader
+# @qintxrollup-plugin-web-worker-loader
 
 Rollup plugin to handle Web Workers.
 
@@ -10,27 +10,27 @@ Supports bundling workers for Node.js environments
 ### Getting started
 
 ```
-yarn add rollup-plugin-web-worker-loader --dev
+yarn add @qintx/rollup-plugin-web-worker-loader --dev
 ```
 
 Add the plugin to your rollup configuration:
 
 ```javascript
-import webWorkerLoader from 'rollup-plugin-web-worker-loader';
+import webWorkerLoader from '@qintx/rollup-plugin-web-worker-loader';
 
 export default {
     entry: 'src/index.js',
-    plugins: [ 
+    plugins: [
         webWorkerLoader(/* configuration */),
     ],
     format: 'esm',
 };
 ```
 
-Bundle the worker code using the prefix `web-worker:` in your imports:
+In your imports:
 
 ```javascript
-import DataWorker from 'web-worker:./DataWorker';
+import DataWorker from './worker';
 
 const dataWorker = new DataWorker();
 dataWorker.postMessage('Hello World!');
@@ -49,6 +49,7 @@ webWorkerLoader({
                                 
     loadPath?: string           // this options is useful when the worker scripts need to be loaded from another folder.
                                 // Default: ''
+    patterns?: array            // the file pattern that will be processed by this plugin. Default: [/\/worker$/]
 })
 ```
 

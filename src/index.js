@@ -1,7 +1,10 @@
 const path = require('path');
 const rollup = require('rollup');
+const babel = require('babel-core');
 const utils = require('./utils');
 const plugins = require('./plugins');
+
+const helperId = path.resolve(__dirname, 'WorkerLoaderHelper.js');
 
 module.exports = function workerLoaderPlugin(config = null) {
   const sourcemap = (config && config.sourcemap) || false;
@@ -31,7 +34,7 @@ module.exports = function workerLoaderPlugin(config = null) {
 
     resolveId(importee, importer) {
       if (importee === 'rollup-plugin-web-worker-loader-helper') {
-        return path.resolve(__dirname, 'WorkerLoaderHelper.js');
+        return require.resolve(helperId);;
       } else if (patterns.some(item => item.test(importee))) {
         const folder = path.dirname(importer);
         const paths = require.resolve.paths(importer);
@@ -59,6 +62,13 @@ module.exports = function workerLoaderPlugin(config = null) {
 
     load(id) {
       return new Promise((resolve, reject) => {
+        if (id === helperId) {
+          // const content = fs.readFileSync(id, 'utf-8')
+          // helper file, convert to es5
+          const output = babel.transformFileSync(id, { presets: [['env']]});
+          return resolve({ code: output.code, map: output.map, inline: true });
+        }
+
         if (idMap.has(id) && !exclude.has(id)) {
           if (!inline) {
             /* inline requires rollup version 1.9.2 or higher */
